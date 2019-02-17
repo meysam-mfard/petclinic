@@ -1,10 +1,7 @@
 package meysam.springframework.petclinic.bootstrap;
 
 import meysam.springframework.petclinic.model.*;
-import meysam.springframework.petclinic.services.OwnerService;
-import meysam.springframework.petclinic.services.PetTypeService;
-import meysam.springframework.petclinic.services.SpecialityService;
-import meysam.springframework.petclinic.services.VetService;
+import meysam.springframework.petclinic.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -18,14 +15,18 @@ public class DataLoader implements CommandLineRunner {
     private final VetService vetService;
     private final PetTypeService petTypeService;
     private final SpecialityService specialityService;
+    private final VisitService visitService;
 
     @Autowired
-    public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService, SpecialityService specialityService) {
+    public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService,
+                      SpecialityService specialityService, VisitService visitService) {
         this.ownerService = ownerService;
         this.vetService = vetService;
         this.petTypeService = petTypeService;
         this.specialityService = specialityService;
+        this.visitService = visitService;
     }
+
 
     @Override
     public void run(String... args) throws Exception {
@@ -94,6 +95,15 @@ public class DataLoader implements CommandLineRunner {
         ownerService.save(owner2);
 
         System.out.println("Loaded owners....");
+
+        Visit catVisit = new Visit();
+        catVisit.setPet(marysPet);
+        catVisit.setDate(LocalDate.now());
+        catVisit.setDescription("Broken leg.");
+
+        visitService.save(catVisit);
+
+        System.out.println("Loaded visit....");
 
         Vet vet1 = new Vet();
         vet1.setId(1L);
