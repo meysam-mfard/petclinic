@@ -85,6 +85,10 @@ public class DataLoader implements CommandLineRunner {
         owner2.setCity("Vancouver");
         owner2.setTelephone("456456456");
 
+        //creating object using builder pattern, added by lombok @Builder
+        /*Owner owner2 = Owner.builder().id(2L).firstName("Mary").lastName("Thomson").address("4567 Brick").city("Vancouver")
+                .telephone("456456456").pets(new HashSet<>()).build();*/
+
         Pet marysPet = new Pet();
         marysPet.setName("TommyC");
         marysPet.setOwner(owner2);
