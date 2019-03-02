@@ -53,5 +53,11 @@ public class OwnerMapService extends AbstractMapService<Owner, Long> implements 
             if (owner.getLastName().equals(lastName))
                 return owner;
         return null;
+
+        /*return this.findAll()
+                .stream()
+                .filter(owner -> owner.getLastName().equalsIgnoreCase(lastName))
+                .findFirst()
+                .orElse(null);*/
     }
 }
