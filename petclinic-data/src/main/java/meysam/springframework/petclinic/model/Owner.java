@@ -9,7 +9,7 @@ import java.util.Set;
 @Getter
 @Setter
 @NoArgsConstructor
-@EqualsAndHashCode(exclude = {"pets"})
+@EqualsAndHashCode(callSuper = true, exclude = {"pets"})
 @Entity
 @Table(name = "owners")
 public class Owner extends Person {
